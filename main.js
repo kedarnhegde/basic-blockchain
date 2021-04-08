@@ -1,6 +1,8 @@
+// Importing SHA256 for Hashing
 const SHA256 = require('crypto-js/sha256');
 
 
+// Block Class - 
 class Block {
     constructor (index, timestamp, data, previousHash = '') {
         this.index = index;
@@ -14,6 +16,8 @@ class Block {
     }
 }
 
+
+//Block-Chain Class
 class BlockChain {
     constructor () {
         this.chain = [this.createGenesis()];
@@ -50,23 +54,22 @@ class BlockChain {
 
 }
 
+// Creating a new Block Chain -
 let myCoin = new BlockChain();
 
+// Adding Blocks
 myCoin.addBlock(new Block(1,'08-04-2021', {'from': 'Alex', 'to':'John', 'amount':'100'}));
 myCoin.addBlock(new Block(2,'08-04-2021', {'from': 'Sam', 'to':'Tom', 'amount':'200'}));
 
-// Printing the entire Block-chain -
 
+// Printing the entire Block-chain -
 console.log(JSON.stringify(myCoin, null, 4));
 
 
 // Checking validity of Block-Chain before altering data-
-
 console.log("Is Block-Chain Valid ? " + myCoin.isChainValid());
 
 
 // Checking validity of Block-Chain after altering data-
-
 myCoin.chain[1].data["amount"] = 500;
-
 console.log("Is Block-Chain Valid ? " + myCoin.isChainValid());
